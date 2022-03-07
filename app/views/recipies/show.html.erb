@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+  <%= link_to "Reciper", recipies_path,:class=>"nav-link navbar-brand" %>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+      <li class="nav-item">
+        <%= link_to 'Recipies', recipies_path,:class=>"nav-link"  %> 
+      </li> 
+        <li class="nav-item">
+          <%= link_to "Ingredients", ingredients_path,:class=>"nav-link" %>
+        </li> 
+        <link_to type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          Edit
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <%= render 'edit', recipy: @recipy %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-inline"><p id="notice"><%= notice %></p></div>
+
+<%= link_to image_tag(@recipy.image, style:'width:100%; height: 350px;'), recipies_path,:class=>'img' %>
+
+<div class="ms-5">
+  <p><b class="text-uppercase">Name:</b>
+   <%= @recipy.name %> </p>
+ 
+  <b>Procedure is</b>
+  <p><%= @recipy.procedure %> </p>
+
+<% @recipy.recipy_ingredients.each do |ingredient| %>
+  <div class="mb-3">
+    <h4>Ingredient</h4>
+    <li><% i = Ingredient.find(ingredient.ingredient_id) %>
+    <%= i.name %></li>
+  </div>
+    <h5>Quantity</h5>
+     <li><%= ingredient.quantity %></li>
+    <h5>Unit</h5>
+     <li><%= ingredient.unit %></li>
+<% end %>
+
+

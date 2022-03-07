@@ -1,0 +1,15 @@
+<div class="col">
+
+    <div class=" card" style="width: 18rem;" >
+      <% if recipy.image.present? %>
+        <%= link_to image_tag(recipy.image, style:'width:100%'), recipy_path(recipy), :class=>"card-img-top" %>
+      <% end%>  
+    <div class="card-body">
+      <h6 class="card-title">Name</h6>
+      <p class="card-text"><%= recipy.name %></p>
+      <h6 class="card-title">Procedure</h6>
+      <p class="card-text"><%= recipy.procedure %></p>
+    <%= link_to 'Destroy', recipy, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+  </div>
+</div>

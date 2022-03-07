@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+  <%= link_to "Reciper", recipies_path,:class=>"nav-link navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+      <li class="nav-item">
+        <%= link_to 'Recipies', recipies_path,:class=>"nav-link"  %> 
+      </li> 
+        <li class="nav-item">
+          <%= link_to "Ingredients", ingredients_path,:class=>"nav-link" %>
+        </li> 
+        <li class="nav-item">
+         <%= link_to "New Ingredient", new_ingredient_path,:class=>"nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<p id="notice"><%= notice %></p>
+
+<h1>Ingredients</h1>
+
+<table class="table table-striped table-hover">
+  <thead class="heading">
+    <tr>
+      <th scope="col"style='color:cadetblue'></th>
+      <th scope="col"style='color:cadetblue'>Name</th>
+      <th scope="col"style='color:cadetblue'> Actions </th>
+      <th scope="col"style='color:cadetblue'></th>
+      <th scope="col"style='color:cadetblue'></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @ingredients.each do |ingredient| %>
+    <tr>
+      <th scope="row">*</th>
+      <td style='color:cadetblue'><%= ingredient.name %></td>
+      <td><%= link_to 'Show', ingredient %></td>
+      <td><%= link_to 'Edit', edit_ingredient_path(ingredient) %></td>
+      <td><%= link_to 'Destroy', ingredient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

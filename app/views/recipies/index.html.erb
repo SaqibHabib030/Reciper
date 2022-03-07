@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+  <%= link_to "Reciper", recipies_path,:class=>"nav-link navbar-brand" %>
+   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+   </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <button type="button" class="btn btn-primary" id="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-dismiss="modal" aria-hidden="true" remote=true onlick="functionToExecute()">
+          Create Recipies
+        </button>
+        <li class="nav-item">
+          <%= link_to "Ingredients", ingredients_path,:class=>"nav-link" %>
+        </li> 
+        <li class="nav-item">
+         <%= link_to "New Ingredient", new_ingredient_path,:class=>"nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Create New Recipe</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      
+      <%= render 'form', recipy: @recipy %>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+  <div id="cre">
+    <h1>Recipies</h1>
+  </div>
+
+  <tbody id="table">
+   
+<div class="container">
+<div class="row">
+<% @recipies.each do |recipy| %>
+  <%= render 'recipy', recipy:recipy %>
+<% end %>
+</div>
+</div> 
+</tbody>
