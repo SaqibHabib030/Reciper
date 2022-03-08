@@ -27,6 +27,10 @@ class RecipiesController < ApplicationController
 
   def show
     @ingredients = Ingredient.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @recipies.to_csv }
+    end
   end
 
   def new
@@ -38,9 +42,11 @@ class RecipiesController < ApplicationController
     @recipy = Recipy.new(recipy_params)
     if @recipy.save
       redirect_to recipies_path
-    else
+   
+      else
         render :new, status: :unprocessable_entity 
       end
+    # end
   end
   
   def edit
@@ -64,9 +70,7 @@ class RecipiesController < ApplicationController
       format.html { redirect_to recipies_url, notice: "Recipy was successfully destroyed." }
     end
   end
-
   private
-  
     def set_recipy
       @recipy = Recipy.find(params[:id])
     end

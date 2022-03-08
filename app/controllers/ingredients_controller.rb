@@ -19,33 +19,26 @@ class IngredientsController < ApplicationController
   def create
   
     @ingredient = Ingredient.new(ingredient_params)
-     
       if @ingredient.save
         redirect_to ingredients_path, notice: "Ingredient was successfully created."
       else
-      render :new, status: :unprocessable_entity 
-    end
+        render :new, status: :unprocessable_entity 
+      end
   end
 
   def update
-    respond_to do |format|
+  
       if @ingredient.update(ingredient_params)
-        format.html { redirect_to ingredient_url(@ingredient), notice: "Ingredient was successfully updated." }
-        format.json { render :show, status: :ok, location: @ingredient }
+        redirect_to ingredients_path, notice: "Ingredient was successfully updated."
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @ingredient.errors, status: :unprocessable_entity }
+        render :edit, status: :unprocessable_entity 
       end
-    end
   end
 
   def destroy
+    @ingredient = Ingredient.find(params[:id])
     @ingredient.destroy
-
-    respond_to do |format|
-      format.html { redirect_to ingredients_url, notice: "Ingredient was successfully destroyed." }
-      format.json { head :no_content }
-    end
+      redirect_to ingredients_path, notice: "Ingredient was successfully destroyed." 
   end
 
   private
