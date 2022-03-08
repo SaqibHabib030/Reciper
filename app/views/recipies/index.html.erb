@@ -41,7 +41,10 @@
 </div>
 
 <p id="notice"><%= notice %></p>
-
+<div>
+Download file:
+<%= link_to CSV, recipies_path(format:'csv')%>
+</div><br>
   <div id="cre">
     <h1>Recipies</h1>
   </div>
@@ -56,3 +59,11 @@
 </div>
 </div> 
 </tbody>
+
+
+<h2>Import Files</h2>
+
+<%= form_tag import_recipies_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import"%>
+<% end %>

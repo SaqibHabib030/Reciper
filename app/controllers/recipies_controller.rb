@@ -6,11 +6,31 @@ class RecipiesController < ApplicationController
     @recipies = Recipy.all
     @recipy = Recipy.new
     @ingredients = Ingredient.all
+    
+    # To Export files
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @recipies.to_csv }
+    end
   end
+  
+  # To import File
+
+  def import
+   if Recipy.import(params[:file])
+    redirect_to root_path, notice: "File imported" 
+   else
+   redirect_to root_path, notice: "Record with this id already exists"
+   end 
+  end 
 
   def show
     @ingredients = Ingredient.all
-
+    respond_to do |format|
+      format.html
+      format.csv { send_data @recipies.to_csv }
+    end
   end
 
   def new
