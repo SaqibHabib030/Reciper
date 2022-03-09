@@ -25,4 +25,14 @@ class Recipy < ApplicationRecord
       recipy.save!
     end
   end
+
+  validate :correct_image_type
+
+  def correct_image_type
+    if image.attached? && !image.content_type.in?(%w(image/jpeg image/png))
+      errors.add(:image, 'must be a PNG or jpeg')
+    end 
+  end
+
+
 end

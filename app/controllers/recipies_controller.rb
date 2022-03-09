@@ -18,6 +18,7 @@ class RecipiesController < ApplicationController
   # To import File
 
   def import
+    
    if Recipy.import(params[:file])
     redirect_to root_path, notice: "File imported" 
    else

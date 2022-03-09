@@ -1,24 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-  <%= link_to "Reciper", recipies_path,:class=>"nav-link navbar-brand" %>
-   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-   </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <button type="button" class="btn btn-primary" id="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-dismiss="modal" aria-hidden="true" remote=true onlick="functionToExecute()">
-          Create Recipies
-        </button>
-        <li class="nav-item">
-          <%= link_to "Ingredients", ingredients_path,:class=>"nav-link" %>
-        </li> 
-        <li class="nav-item">
-         <%= link_to "New Ingredient", new_ingredient_path,:class=>"nav-link" %>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<%= render "recipies/navbar" %>
 
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -61,9 +41,9 @@ Download file:
 </tbody>
 
 
-<h2>Import Files</h2>
+<h2>Import CSV Files only</h2>
 
 <%= form_tag import_recipies_path, multipart: true do %>
-  <%= file_field_tag :file %>
+  <%= file_field_tag :file, accept: 'text/csv' %>
   <%= submit_tag "Import"%>
 <% end %>

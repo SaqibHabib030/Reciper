@@ -8,6 +8,7 @@
       <label for="recipeImage" class="form-label">Default file input example</label>
       <%= f.file_field :image, {id: "recipeImage", class: "form-control", type: "file" } %>
     </div>
+    
     <div class="mb-3">
       <label for="recipeProcedure" class="form-label">Cooking Procedure</label>
       <%= f.text_field :procedure, {id: "recipeProcedure", class: "form-control", type: "text",autocomplete: 'off' } %>
@@ -24,8 +25,7 @@
         </div>
         <div class="mb-3 col-md-4">
           <label for="unit" class="form-label">Unit</label>
-        
-          <%= ingredients_form.text_field :unit, {id: "ingredient-unit", class: "form-control", type: "text" } %>
+          <%= ingredients_form.text_field :unit, {class: "form-control", type: "text" } %>
         </div>
       </div>
       <%= ingredients_form.link_to_remove "Remove Ingredient" %>
