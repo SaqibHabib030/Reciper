@@ -1,7 +1,6 @@
-
-
 class Recipy < ApplicationRecord
   
+  # validates :name, :presence => true
   
   has_many :recipy_ingredients
   has_many :ingredients, through: :recipy_ingredients
@@ -26,13 +25,12 @@ class Recipy < ApplicationRecord
     end
   end
 
-  validate :correct_image_type
+  # validate :correct_image_type
 
-  def correct_image_type
-    if image.attached? && !image.content_type.in?(%w(image/jpeg image/png))
-      errors.add(:image, 'must be a PNG or jpeg')
-    end 
-  end
-
+  # def correct_image_type
+  #   if image.attached? && !image.content_type.in?(%w(image/jpeg image/png))
+  #     errors.add(:image, 'must be a PNG or jpeg')
+  #   end 
+  # end
 
 end

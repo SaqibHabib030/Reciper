@@ -6,9 +6,16 @@
    </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+       <% if params[:action] == 'index' %>
         <button type="button" class="btn btn-primary" id="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-dismiss="modal" aria-hidden="true" remote=true ">
-          Create/Edit Recipies
+          Create Recipies
         </button>
+        <% end %>
+         <% if params[:action] == 'show' %>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Edit
+          </button>
+          <% end %>
         <li class="nav-item">
           <%= link_to "Ingredients", ingredients_path,:class=>"nav-link" %>
         </li> 
@@ -16,6 +23,6 @@
          <%= link_to "New Ingredient", new_ingredient_path,:class=>"nav-link" %>
         </li>
       </ul>
-    </div>
+    </div>  
   </div>
 </nav>

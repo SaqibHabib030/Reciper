@@ -1,1 +1,43 @@
-<%= render 'form', recipy: @recipy %>
+<div class="modal-body">
+  <%= nested_form_for recipy, remote: true, local: false do |f| %>
+  <div>
+    <% if recipy.errors.any? %>
+      <%= recipy.errors.full_messages.each do |message|%>
+        <% message %>  
+      <% end %>
+    <% end %>
+  </div>
+      <div class="mb-3">
+      <label for="recipeName" class="form-label">Recipe Name</label>
+      <%= f.text_field :name, {id: "recipeName", class: "form-control", type: "text",autocomplete: 'off' } %>
+    </div>
+    <div class="mb-3">
+      <label for="recipeImage" class="form-label">Default file input example</label>
+      <%= f.file_field :image, {id: "recipeImage", class: "form-control", type: "file", accept:'image/*' } %>
+    </div>
+    <div class="mb-3">
+      <label for="recipeProcedure" class="form-label">Cooking Procedure</label>
+      <%= f.text_field :procedure, {id: "recipeProcedure", class: "form-control", type: "text",autocomplete: 'off' } %>
+    </div>
+    <%= f.fields_for :recipy_ingredients do |ingredients_form|%>
+      <div class="input-group row">
+        <div class="mb-3 col-md-4">
+          <label for="ingredient-name" class="form-label">Ingredient</label>
+          <%= ingredients_form.collection_select :ingredient_id, @ingredients, :id,:name,{}, {:class => 'form-select'} %>  </div>
+
+        <div class="mb-3 col-md-4">
+          <label for="ingredient-quantity" class="form-label">Quantity</label>
+          <%= ingredients_form.text_field :quantity, {id: "ingredient-quantity", class: "form-control", type: "number" } %>
+        </div>
+        <div class="mb-3 col-md-4">
+          <label for="unit" class="form-label">Unit</label>
+          <%= ingredients_form.text_field :unit, {class: "form-control", type: "text" } %>
+        </div>
+      </div>
+      <%= ingredients_form.link_to_remove "Remove Ingredient" %>
+    <% end %>
+    <p><%= f.link_to_add "Attach Ingredient", :recipy_ingredients %></p>
+    <button type="submit" class="btn btn-primary" id="btn">Update Recipe</button>
+  <% end %>
+</div>
+
