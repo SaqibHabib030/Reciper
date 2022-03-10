@@ -1,12 +1,12 @@
 <div class="modal-body">
   <%= nested_form_for recipy, remote: true, local: false do |f| %>
+  <div>
     <% if recipy.errors.any? %>
-    <ul>
-    <% recipy.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+      <%= recipy.errors.full_messages.each do |message|%>
+        <% message %>  
+      <% end %>
     <% end %>
-    </ul>
-  <% end %>
+  </div>
       <div class="mb-3">
       <label for="recipeName" class="form-label">Recipe Name</label>
       <%= f.text_field :name, {id: "recipeName", class: "form-control", type: "text",autocomplete: 'off' } %>
@@ -29,8 +29,8 @@
           <label for="ingredient-quantity" class="form-label">Quantity</label>
           <%= ingredients_form.text_field :quantity, {id: "ingredient-quantity", class: "form-control", type: "number" } %>
         </div>
-          <%# <%= ingredients_form.text_field :unit, {class: "form-control", type: "text" } %> 
-       <div class="mb-3 col-md-4">
+          <%# = ingredients_form.text_field :unit, {class: "form-control", type: "text" } %> 
+           <div class="mb-3 col-md-4">
           <label for="unit" class="form-label">Unit</label>
           <div>
         <%= ingredients_form.select(:unit, options_for_select([['Kg','Kg'],['grams','grams'],['ltr','ltr']])) %>
@@ -40,30 +40,5 @@
       <%= ingredients_form.link_to_remove "Remove Ingredient" %>
     <% end %>
     <p><%= f.link_to_add "Attach Ingredient", :recipy_ingredients %></p>
-    <% if params[:action] == 'index' %>
-       <button type="submit" class="btn btn-primary" id="btn">Create Recipe</button>
-     <%end%>  
-     <% if params[:action] == 'show' %>
-      <button type="submit" class="btn btn-primary" id="btn">Update Recipe</button>
-     <%end%>
+    <button type="submit" class="btn btn-primary" id="btn">Update Recipe</button>
   <% end %>
-</div>
-
-
-<script>
-
-$('#btn').click(function(){
-  $.ajax({
-    type: "GET",
-    dataType: 'json',      
-    url: "/recipie",
-    success: function (result) {
-      $('#staticBackdrop').modal('hide')
-    },
-    error: function (result, err) {
-      $('#staticBackdrop').modal('show')
-    }
-  });
-});
-
-</script>
