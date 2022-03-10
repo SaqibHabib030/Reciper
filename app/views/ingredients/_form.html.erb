@@ -1,13 +1,9 @@
 <%= form_with(model: ingredient, local: true) do |form| %>
-  <% if ingredient.errors.any? %>
-    <div id="error_explanation" class="alert alert-warning">
       <ul>
         <% ingredient.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
-    </div>
-  <% end %>
 
   <div class="field form-label mb-3"">
     <%= form.label :name %>

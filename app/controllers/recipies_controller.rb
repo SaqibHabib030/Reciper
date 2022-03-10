@@ -22,7 +22,7 @@ class RecipiesController < ApplicationController
    if Recipy.import(params[:file])
     redirect_to root_path, notice: "File imported" 
    else
-   redirect_to root_path, notice: "Record with this id already exists"
+   redirect_to root_path
    end 
   end 
 
@@ -38,7 +38,7 @@ class RecipiesController < ApplicationController
   def create
     @recipy = Recipy.new(recipy_params)
     if @recipy.save
-      redirect_to recipies_path
+      redirect_to recipies_path, notice: "Recipy was successfully created."
     else
         render :new, status: :unprocessable_entity 
       end

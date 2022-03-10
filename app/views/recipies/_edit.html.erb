@@ -29,10 +29,14 @@
           <label for="ingredient-quantity" class="form-label">Quantity</label>
           <%= ingredients_form.text_field :quantity, {id: "ingredient-quantity", class: "form-control", type: "number" } %>
         </div>
-        <div class="mb-3 col-md-4">
+          <%# = ingredients_form.text_field :unit, {class: "form-control", type: "text" } %> 
+           <div class="mb-3 col-md-4">
           <label for="unit" class="form-label">Unit</label>
-          <%= ingredients_form.text_field :unit, {class: "form-control", type: "text" } %>
-        </div>
+          <div>
+        <%= ingredients_form.select(:unit, options_for_select([['Kg','Kg'],['grams','grams'],['ltr','ltr']])) %>
+         </div>
+         </div>
+      
       </div>
       <%= ingredients_form.link_to_remove "Remove Ingredient" %>
     <% end %>
