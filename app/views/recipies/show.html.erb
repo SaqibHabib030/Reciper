@@ -24,22 +24,30 @@
 
 <%= link_to image_tag(@recipy.image, style:'width:100%; height: 350px;'), recipies_path,:class=>'img' %>
 
-<div class="ms-5">
-  <p><b class="text-uppercase">Name:</b>
-   <%= @recipy.name %> </p>
- 
-  <b>Procedure is</b>
-  <p><%= @recipy.procedure %> </p>
 
-<% @recipy.recipy_ingredients.each do |ingredient| %>
-  <div class="mb-3">
-    <h4>Ingredient</h4>
-    <li><% i = Ingredient.find(ingredient.ingredient_id) %>
-    <%= i.name %></li>
-  </div>
-    <h5>Quantity</h5>
-     <li><%= ingredient.quantity %></li>
-    <h5>Unit</h5>
-     <li><%= ingredient.unit %></li>
-<% end %>
 
+<table class="table table-striped table-hover">
+  <thead class="heading">
+    <tr>
+      <th scope="col"style='color:cadetblue'></th>
+      <th scope="col"style='color:cadetblue'>Ingredients</th>
+      <th scope="col"style='color:cadetblue'>Quantity</th>
+      <th scope="col"style='color:cadetblue'>Unit</th>
+    </tr>
+  </thead>
+  <tbody>
+
+
+     <p> Name of the Recipe is: <b><%= @recipy.name %></b></p>
+      <p>Procedure is:<b><%= @recipy.procedure %><b></p>
+  <% @recipy.recipy_ingredients.each do |ingredient| %>
+    <tr>
+      <th scope="row">*</th>
+      <td><% i = Ingredient.find(ingredient.ingredient_id) %>
+    <%= i.name %></td>
+      <td><%= ingredient.quantity %></td>
+      <td><%= ingredient.unit %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
