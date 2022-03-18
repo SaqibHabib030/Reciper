@@ -40,7 +40,7 @@ class RecipiesController < ApplicationController
     if @recipy.save
       redirect_to recipies_path, notice: "Recipy was successfully created."
     else
-        render :new, status: :unprocessable_entity 
+        render :new, status: :unprocessable_entity  
       end
   end
   

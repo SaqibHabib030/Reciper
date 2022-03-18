@@ -1,8 +1,6 @@
 <%= render "recipies/navbar" %>
 
-<%# <p id="notice"><%= notice %>
-
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -22,7 +20,9 @@
   </div>
 </div>
 
-<p id="notice"><%= notice %></p>
+<div>
+  <p class="notice"><%= notice %></p>
+</div>
 <div>
 Download file:
 <%= link_to CSV, recipies_path(format:'csv')%>
@@ -46,6 +46,6 @@ Download file:
 <h2>Import CSV Files only</h2>
 
 <%= form_tag import_recipies_path, multipart: true do %>
-  <%= file_field_tag :file, accept: 'text/csv' %>
+  <%= file_field_tag :file, accept: 'text/csv',required: true  %>
   <%= submit_tag "Import"%>
 <% end %>
